@@ -44,5 +44,5 @@ For this to work you have to wrap your tables in some extra markup. You'll notic
 
 ## TODO
 
-# Angular Directive
-# REACT Component
+1. Angular Directive
+2. REACT Component
