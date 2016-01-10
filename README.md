@@ -12,7 +12,8 @@ This is a CSS-only solution that combines Flexbox and `table-layout: fixed` to p
 * Dynamic content, like content loaded from AJAX, won't screw up the alignment (thanks to `table-layout: fixed`)
 * Resizing the container works as expected because the widths are percentage-based
 * fixed footer support (thanks to Flexbox)
-* resizable columns! (with the supplied jQuery plugin)
+* Layout is 100% CSS-based so no crazy polling or JS event handling
+* user-resizable columns! (with the supplied jQuery plugin)
 
 ## Caveats:
 
