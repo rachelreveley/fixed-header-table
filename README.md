@@ -22,7 +22,7 @@ Of course this solution isn't a silver bullet.  There are a few things to keep i
 * Requires some additional markup. You can't just add a class to an existing `<table>` and call it a day.
 * The number of `<th>` tags must match the number of `<td>` tags or the alignment won't work.
 * Columns will not resize based on the content (`table-layout: fixed`).
-* If you set widths for your `<th>` tags you must set the same widths for your first `<td>` tags. (This doesn't apply to the jQuery plugin because it will automatically set the widths of the `<td>` tags.)
+* If you set widths for your `<th>` tags you must set the same widths for your first row `<td>` tags because the header and body are actually in 2 different tables! (This doesn't apply to the jQuery plugin because it will automatically set the widths of the `<td>` tags.)
 
 ## The Markup
 
