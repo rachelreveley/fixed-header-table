@@ -17,7 +17,7 @@ This is a CSS-only solution that combines Flexbox and `table-layout: fixed` to p
 
 ## Browser Compatibility:
 
-Tested on newest versions of Chrome, Safari, and Firefox. I have no idea if this works in IE.
+Tested on newest versions of Chrome, Safari, and Firefox for Mac. I have no idea if this works in IE.
 
 ## Caveats:
 
