@@ -2,7 +2,7 @@
 
 For some strange reason, having an HTML table where the content is scrollable but the headers stay fixed is really hard. There are many solutions out there but they all seem to have nasty side-effects and/or compromises.
 
-This is a CSS-only solution that combines Flexbox and `table-layout: fixed` to provide fixed-headers and scrollable content.
+This is a CSS-only solution that combines Flexbox and `table-layout: fixed` to provide fixed headers and scrollable content.
 
 ## Features:
 
