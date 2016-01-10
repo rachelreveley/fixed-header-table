@@ -36,8 +36,8 @@ For this to work you have to wrap your tables in some extra markup. You'll notic
     <div class="table-body">
         <!-- Your body <table goes here. This content will be scrollable -->
     </div>
-    <div class="table table-footer">
-        <!-- This is an optional fixed header.  You can use it for pagination or whatever. -->
+    <div class="table-footer">
+        <!-- This is an optional fixed footer.  You can use it for pagination or whatever. -->
     </div>
 </div>
 ```
