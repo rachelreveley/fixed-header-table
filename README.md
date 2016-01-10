@@ -15,6 +15,10 @@ This is a CSS-only solution that combines Flexbox and `table-layout: fixed` to p
 * Layout is 100% CSS-based so no crazy polling or JS event handling
 * user-resizable columns! (with the supplied jQuery plugin)
 
+## Browser Compatibility:
+
+Tested on newest versions of Chrome, Safari, and Firefox. I have no idea if this works in IE.
+
 ## Caveats:
 
 Of course this solution isn't a silver bullet.  There are a few things to keep in mind:
