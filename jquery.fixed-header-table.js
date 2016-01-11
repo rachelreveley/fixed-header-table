@@ -17,73 +17,69 @@ Copyright 2016 Chris Brantley (https://github.com/chrisbrantley)
 (function ( $ ) {
     $.fn.fixedHeaderTable = function() {
         return this.each(function() {
-            
             var instance = $(this);
+            var headers = $(this).find('.table-header th:not(:last-child)');
+            var cells = $(this).find('.table-body tr:first td:not(:last-child)');
 
-            console.log(this);
-            headers = $(this).find('.table-header th:not(:last-child)');
-            cells = $(this).find('.table-body tr:first td:not(:last-child)');
+            function setPixelWidths(i, pixelWidth) {
+                headers.eq(i).css('width', pixelWidth);
+                cells.eq(i).css('width', pixelWidth);
+            }
+
+            function setPercentageWidths(i, pixelWidth) {
+                var percentWidth = (pixelWidth / instance.outerWidth()) * 100;
+
+                headers.eq(i).css('width', percentWidth + '%');
+                cells.eq(i).css('width', percentWidth + '%');
+            }
 
             headers.each(function(idx) {
                 var header = $(this);
-                var next_header = $(headers[idx+1]);
-                var cell = $(cells[idx]);
-                var next_cell = $(cells[idx+1]);
-                
-                // Initialize widths to percentages
-                width_percentage = header.outerWidth()/instance.outerWidth() * 100;
-                header.css('width', width_percentage + '%');
-                cell.css('width', width_percentage + '%');
+                var startX = null;
+                var resizeHandle = $("<div class='resize-handle'></div>");
 
-                function adjust_width(offset) {
-                    column_width = header.outerWidth() - offset;
+                // Initialize widths to percentages
+                setPercentageWidths(idx, header.outerWidth());
+
+                // Add resize handle with drag handler
+                $(this).append(resizeHandle.on('mousedown', onDragStart));
+
+                function adjustWidth(offset) {
+                    var column_width = header.outerWidth() - offset;
                     if (column_width <= 8)
                         return;
-                    var total_width = instance.outerWidth();
-                    column_width_percentage = column_width / total_width * 100;
-                    header.css('width', column_width_percentage+'%');
-                    cell.css('width', column_width_percentage+'%');
+
+                    setPixelWidths(idx, column_width);
                 }
 
-                function reset_to_percentages() {
-                    left_width_percentage = (header.outerWidth()/instance.innerWidth()) * 100;
-                    right_width_percentage = (next_header.outerWidth()/instance.innerWidth()) * 100;
-                    
-                    header.css('width', left_width_percentage + '%');
-                    cell.css('width', left_width_percentage + '%');
-                    
-                    next_header.css('width', right_width_percentage + '%');
-                    next_cell.css('width', right_width_percentage + '%');
-                }
+                function onDragStart(e) {
+                    resizeHandle.addClass('dragging');
+                    startX = e.screenX;
 
-                var element = null
-                resizeHandle = $("<div class='resize-handle'></div>").bind('mousedown', function(e) {
-                    
-                    element = $(e.target);
-                    element.addClass('dragging');
+                    $(window).on('mousemove', onDrag);
+                    $(window).on('mouseup', onDragEnd);
 
-                    var start = e.screenX;
-                    console.log(this);
-                    $(window).on('mousemove', function(e) {
-                        var end = e.screenX;
-                        var offset = start - end;
-                        start = end;
-                        adjust_width(offset);
-                    });
                     return false;
-                })
-                
-                $(window).on('mouseup', function(e) {
-                    if (element) {
-                        element.removeClass('dragging');
-                    }
-                    $(window).off('mousemove');
-                });
+                }
 
+                function onDrag(e) {
+                    var endX = e.screenX;
 
-                $(this).append(resizeHandle);
+                    adjustWidth(startX - endX);
+
+                    startX = endX;
+                }
+
+                function onDragEnd(e) {
+                    resizeHandle.removeClass('dragging');
+
+                    setPercentageWidths(idx, header.outerWidth());
+
+                    $(window).off('mousemove', onDrag);
+                    $(window).off('mouseup', onDragEnd);
+                }
             });
-            
+
             return this;
         });
     };
