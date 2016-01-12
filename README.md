@@ -23,6 +23,7 @@ Tested on newest versions of Chrome, Safari, and Firefox for Mac. I have no idea
 
 Of course this solution isn't a silver bullet.  There are a few things to keep in mind:
 
+* This solution is not appropriate for wide tables where horizontal scrolling is required because the combination of `table-layout: fixed` and percentage-based widths means that the columns will always fit inside their container.
 * Requires some additional markup. You can't just add a class to an existing `<table>` and call it a day.
 * The number of `<th>` tags must match the number of `<td>` tags or the alignment won't work.
 * Columns will not resize based on the content (`table-layout: fixed`).
