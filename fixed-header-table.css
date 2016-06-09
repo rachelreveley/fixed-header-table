@@ -17,6 +17,7 @@ Copyright 2016 Chris Brantley (https://github.com/chrisbrantley)
 .fixed-header-table {
     display: flex;
     flex-direction: column;
+    max-height: calc(100vh - 100px); /* Set the 100px to a suitable height to make space for any fixed headers.*/
 }
 
 .fixed-header-table .table-header {
